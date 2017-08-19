@@ -35,8 +35,11 @@ for os in $target_os; do
 		go build github.com/xtaci/kcptun/client
 		go build github.com/xtaci/kcptun/server
 		if [ "$os" != "windows" ]; then
-			mv client client_${os}_${arch}
-			mv server server_${os}_${arch}
+			mv client kcptun_client_${os}_${arch}
+			mv server kcptun_server_${os}_${arch}
+		elif
+			mv client.exe kcptun_client.exe
+			mv server.exe kcptun_server.exe
 		fi
 		echo "Done"
 	done
