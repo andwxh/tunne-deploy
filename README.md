@@ -1,7 +1,8 @@
 # tunnel-deploy
 
-Deploy yassg (Yet Another ShadowSocks in Golang) on systems has yum.
-Support autorun when system boot on both upstart & systemd.
+Deploy yassg (Yet Another ShadowSocks in Golang) on systems that has yum.
+
+Support auto run on startup by using upstart or systemd.
 
 Usage:
 ```bash
