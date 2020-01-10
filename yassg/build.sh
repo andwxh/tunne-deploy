@@ -6,17 +6,12 @@ cd $(dirname $0)
 # Create & set the temporary GOPATH
 mkdir -p goPath
 cd goPath
-export GOPATH=$PWD
-echo "GOPATH: $GOPATH"
-cd ..
 
 
 # Build files
 echo "Initialize files..."
 git clone https://github.com/andwxh/yassg.git
-mv yassg/* goPath/
-rm -rf yassg
-go get github.com/urfave/cli
+cd yassg
 echo "Initialize files...Done"
 
 
@@ -34,12 +29,17 @@ for os in $target_os; do
 		printf "Building ${os}_${arch}..."
 		export GOOS=$os
 		export GOARCH=$arch
-		go build goPath/src/main.go
+		go build
 		if [ "$os" != "windows" ]; then
-			mv main yassg_${os}_${arch}
+			mv yassg ../../yassg_${os}_${arch}
 		else
-			mv main.exe yassg.exe
+			mv yassg.exe ../../yassg.exe
 		fi
 		echo "Done"
 	done
 done
+
+
+# Clean-up
+cd ../..
+rm -rf goPath
